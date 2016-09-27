@@ -67,7 +67,13 @@ module SectionTabHelper
 
             item_element = HtmlElement.new('li', module_list_item)
             last_item_element = item_element
-            item_element.add_class(item.content_type)
+            # Targeting that in css is a bit of a pain due to the colons
+            # so i am just renaming it for convenience there
+            if item.content_type == 'Quizzes::Quiz'
+              item_element.add_class('Quiz')
+            else
+              item_element.add_class(item.content_type)
+            end
 
             liclass = ''
             if item.id.to_i == module_item_id.to_i
